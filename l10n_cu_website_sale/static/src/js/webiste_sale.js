@@ -30,13 +30,13 @@ WebsiteSale.include({
 
     _onChangeState: function (ev) {
         return this._super.apply(this, arguments).then(() => {
-            const country = $("select[name='country_id']");
+            const country = this.$el.find("select[name='country_id']");
 
             const selectedOption = country.find('option:selected');
             // const countryCode = selectedOption.attr('code');
             const mode = country.attr('mode');
 
-            const state = $("select[name='state_id']");
+            const state = this.$el.find("select[name='state_id']");
 
             if (state.val() === '') {
                 let data = {
@@ -56,7 +56,7 @@ WebsiteSale.include({
 
     _expandDataStates(data) {
         // populate states and display
-        let selectMunicipalities = $("select[name='res_municipality_id']");
+        let selectMunicipalities = this.$el.find("select[name='res_municipality_id']");
         // dont reload state at first loading (done in qweb)
         if (selectMunicipalities.data('init') === 0 || selectMunicipalities.find('option').length === 1) {
             if (data.municipalities.length || data.municipality_required) {
