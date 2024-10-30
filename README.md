@@ -57,4 +57,5 @@ no es un plan contable estable.
 ----
 ## Próximos cambios.
 
-Desarrollo de módulos como métodos de pago con las pasarelas de pagos vigentes en el país (enzona) en desarrollo y próximo a su lanzamiento con la Beta de la Localización Cubana. 
+Desarrollo de módulos como Activos Fijos. y otros necesarios para el mejor control de las entidades y pymes del pais. Tambien se desarrolla los modulos de Tesorería y control del gasto del presupuesto segun las normas del MFP .para las UPs. 
+
