@@ -20,10 +20,14 @@ WebsiteSale.include({
      * @private
      */
     _changeCountry: function () {
-        let data = {
-            municipalities: []
+        let municipalities = this.$el.find("select[name='res_municipality_id']");
+        if (municipalities.data('init') === 0 || municipalities.find('option').length === 1) {
+            let data = {
+                municipalities: []
+            }
+            this._expandDataStates(data);
         }
-        this._expandDataStates(data);
+
         this._super.apply(this, arguments);
         this._onChangeState(this);
     },
@@ -31,14 +35,10 @@ WebsiteSale.include({
     _onChangeState: function (ev) {
         return this._super.apply(this, arguments).then(() => {
             const country = this.$el.find("select[name='country_id']");
-
-            const selectedOption = country.find('option:selected');
-            // const countryCode = selectedOption.attr('code');
             const mode = country.attr('mode');
-
             const state = this.$el.find("select[name='state_id']");
 
-            if (state.val() === '') {
+            if (state.val() === '' || state.val() === null) {
                 let data = {
                     municipalities: []
                 }
@@ -55,9 +55,9 @@ WebsiteSale.include({
     },
 
     _expandDataStates(data) {
-        // populate states and display
+        // populate municipality and display
         let selectMunicipalities = this.$el.find("select[name='res_municipality_id']");
-        // dont reload state at first loading (done in qweb)
+        // dont reload municipality at first loading (done in qweb)
         if (selectMunicipalities.data('init') === 0 || selectMunicipalities.find('option').length === 1) {
             if (data.municipalities.length || data.municipality_required) {
                 selectMunicipalities.html('');
